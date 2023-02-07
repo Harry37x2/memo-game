@@ -10,20 +10,28 @@
 </head>
 
 <body>
-    
-    <div class="game">
-        <div class="controls">
-            <button class="startButton">Start</button>
-            <div class="stats">
-                <div class="moves">0 moves</div>
-                <div class="timer">time: 0 sec</div>
+    <main>
+        <div class="lvl-select">
+            <h1>Select level</h1>
+            <button class="lvl-easy">Easy</button>
+            <button class="lvl-medium">Medium</button>
+            <button class="lvl-hard">Hard</button>
+        </div>
+        <div class="game hidden">
+            <div class="controls">
+                <button class="back-button">Back</button>
+                <button class="start-button">Start</button>
+                <div class="stats">
+                    <div class="moves">0 moves</div>
+                    <div class="timer">time: 0 sec</div>
+                </div>
+            </div>
+            <div class="board-container">
+                <div class="board"></div>
+                <div class="win">You won!</div>
             </div>
         </div>
-        <div class="board-container">
-            <div class="board" data-dimension="4"></div>
-            <div class="win">You won!</div>
-        </div>
-    </div>
+    </main>
 </body>
 
 </html>

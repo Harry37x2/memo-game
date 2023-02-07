@@ -1,15 +1,58 @@
+:root {
+    --linear-blue: linear-gradient(325deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    --linear-blue-rot: linear-gradient(135deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+
+    --linear-green: linear-gradient(325deg, rgba(1, 68, 0, 1) 0%, rgba(82, 218, 31, 1) 100%);
+    --linear-green-rot: linear-gradient(135deg, rgba(1, 68, 0, 1) 0%, rgba(82, 218, 31, 1) 100%);
+
+    --linear-orange: linear-gradient(325deg, rgba(195, 61, 34, 1) 0%, rgba(253, 212, 45, 1) 100%);
+    --linear-orange-rot: linear-gradient(135deg, rgba(195, 61, 34, 1) 0%, rgba(253, 212, 45, 1) 100%);
+
+    --linear-red: linear-gradient(325deg, rgba(68, 0, 0, 1) 0%, rgba(255, 72, 72, 1) 100%);
+    --linear-red-rot: linear-gradient(135deg, rgba(68, 0, 0, 1) 0%, rgba(255, 72, 72, 1) 100%);
+}
+
 html {
     width: 100%;
     height: 100%;
-    background: linear-gradient(325deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.game {
+body {
+    background: var(--linear-blue);
+    background-repeat: no-repeat;
+}
+
+.game, .lvl-select{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.lvl-select {
+    display: flex;
+    flex-direction: column;
+}
+
+.lvl-select > * {
+    margin: 1rem;
+    padding: 1rem 2rem;
+    color:#282A3A;
+    font-weight: bold;
+}
+
+.lvl-easy {
+    background: var(--linear-green);
+    box-shadow: 0 25px 50px rgb(33 33 33 / 25%);
+}
+.lvl-medium {
+    background: var(--linear-orange);
+    box-shadow: 0 25px 50px rgb(33 33 33 / 25%);
+}
+.lvl-hard {
+    background: var(--linear-red);
+    box-shadow: 0 25px 50px rgb(33 33 33 / 25%);
 }
 
 .controls {
@@ -45,12 +88,12 @@ button {
 .win {
     border-radius: 5px;
     box-shadow: 0 25px 50px rgb(33 33 33 / 25%);
-    background: linear-gradient(135deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
     transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1);
     backface-visibility: hidden;
 }
 
 .board {
+    background: var(--linear-blue-rot);
     padding: 20px;
     display: grid;
     grid-template-columns: repeat(4, auto);
@@ -90,6 +133,9 @@ button {
     text-align: center;
     line-height: 100px;
     background: #FDF8E6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card.flipped .card-front {
@@ -121,5 +167,32 @@ button {
 }
 
 .highlight {
-    color: #6f00fc;
+    color:red;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+body.easy .card {
+    width: 150px;
+    height: 150px;
+}
+
+body.easy {
+    background: var(--linear-green);
+}
+body.easy .board {
+    background: var(--linear-green-rot);
+}body.medium {
+    background: var(--linear-orange);
+}
+body.medium .board {
+    background: var(--linear-orange-rot);
+}
+body.hard {
+    background: var(--linear-red);
+}
+body.hard .board {
+    background: var(--linear-red-rot);
 }

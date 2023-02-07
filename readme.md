@@ -1,4 +1,7 @@
-Vanilla JS:
+Memo game with 3 difficulty levels.
+<img src='/design/1.png'>
 
-- ## new DOMParser();
-- ## Event Delegation (eventListener)
+## Vanilla JS:
+
+- new DOMParser();
+- Event Delegation (eventListener)

@@ -2,9 +2,12 @@ const boardContainer = document.querySelector('.board-container')
 const board = document.querySelector('.board')
 const moves = document.querySelector('.moves')
 const timer = document.querySelector('.timer')
-const start = document.querySelector('.startButton')
+const start = document.querySelector('.start-button')
 const win = document.querySelector('.win')
-const easy = document.querySelector('.lvl-easy')
+
+const lvlSelect = document.querySelector('.lvl-select')
+const game = document.querySelector('.game')
+const body = document.querySelector('body')
 
 let gameStarted = false;
 let flippedCards = 0;
@@ -38,13 +41,13 @@ const shuffle = array => {
     return clonedArray
 }
 
-const generateBoard = () => {
-    const dimensions = board.getAttribute('data-dimension')
+const generateBoard = (userDimension) => {
+    const dimensions = userDimension
     if (dimensions % 2 !== 0) {
         throw new Error('Dimension of the board must be even')
     }
     
-    const emojis = ['🥔', '🍒', '🥑', '🌽', '🥕', '🍇', '🍉', '🍌', '🥭', '🍍'];
+    const emojis = ['🥔', '🍒', '🥑', '🌽', '🥕', '🍇', '🍉', '🍌', '🥭', '🍍','🍎','🥥','🍐','🥜','🥒','🍋','🍑','🍅'];
     const picks = pickRandom(emojis, (dimensions*dimensions)/2);
     const items = shuffle([...picks, ...picks])
     const cards = `
@@ -127,20 +130,31 @@ const attachEventListeners = () => {
     document.addEventListener('click', e => {
         const eventTarget = e.target
         const eventParent = eventTarget.parentElement
-
-         if (eventTarget.className.includes('card') && !eventParent.className.includes('flipped')) {
+        if (eventTarget.className === ('lvl-easy')) {
+            game.classList.toggle('hidden')
+            lvlSelect.classList.toggle('hidden')
+            body.classList.add('easy')
+            generateBoard(2);
+        } else if (eventTarget.className === ('lvl-medium')) {
+            game.classList.toggle('hidden')
+            lvlSelect.classList.toggle('hidden')            
+            body.classList.add('medium')
+            generateBoard(4);
+        } else if (eventTarget.className === ('lvl-hard')) {
+            game.classList.toggle('hidden')
+            lvlSelect.classList.toggle('hidden')          
+            body.classList.add('hard')
+            generateBoard(6);
+        } else if (eventTarget.className === ('back-button')) {
+            game.classList.toggle('hidden')
+            lvlSelect.classList.toggle('hidden')
+            location.reload()
+        } else if (eventTarget.className.includes('card') && !eventParent.className.includes('flipped')) {
             flipCard(eventParent)
-        } else if (eventTarget.nodeName === 'BUTTON' && !eventTarget.className.includes('disabled')) {
+        } else if (eventTarget.className===('start-button') && !eventTarget.className.includes('disabled')) {
             startGame()
         }
     })
 }
 
-// function startEasy() {
-// console.log('easy')
-// }
-
-// easy.addEventListener('click', startEasy)
-
-generateBoard();
 attachEventListeners();
